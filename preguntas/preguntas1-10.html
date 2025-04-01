@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Redes - Parte 1</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body id="p1-10">
+<script>
+    function checkAnswer(event, questionId, correctAnswers, explanation) {
+        event.preventDefault();
+        let selectedElements = document.querySelectorAll(`input[name="${questionId}"]:checked`);
+        let selectedValues = Array.from(selectedElements).map(el => el.value);
+        let resultElement = document.getElementById(`result-${questionId}`);
+        
+        if (selectedValues.length === 0) {
+            resultElement.textContent = "Por favor, selecciona una respuesta.";
+            resultElement.style.color = "red";
+            return false;
+        }
+        
+        let isCorrect = selectedValues.sort().toString() === correctAnswers.sort().toString();
+        if (isCorrect) {
+            resultElement.innerHTML = "<span style='color: green;'>¡Correcto!</span> " + explanation;
+        } else {
+            resultElement.innerHTML = "<span style='color: red;'>Incorrecto.</span> La respuesta correcta es: " + correctAnswers.join(", ") + ". " + explanation;
+        }
+        return false;
+    }
+</script>
+<h1>Módulos 8 – 10: Examen de comunicación entre redes Respuestas</h1>
+<div class="container_volver">
+    <a href="../index.html" class="link_volver">Volver al inicio</a>
+</div>
+<p></p>
+<div class="question">
+    <p class="titulo-pregunta">1. Una PC puede tener acceso a los dispositivos en la misma red, pero no puede tener acceso a los dispositivos en otras redes. ¿Cuál es la causa probable de este problema?</p>
+    <form onsubmit="return checkAnswer(event, 'q1', ['b'], 'El gateway predeterminado es la dirección del dispositivo que usa un host para acceder a Internet o a otra red.<br>Si falta el gateway predeterminado o este es incorrecto, el host no se puede comunicar fuera de la red local.<br>El cable de red y las demás partes de la configuración IP funcionan, ya que el host puede tener acceso a los otros hosts de la red local.')">
+        <label><input type="radio" name="q1" value="a"> La PC tiene una máscara de subred incorrecta.</label><br><br>
+        <label><input type="radio" name="q1" value="b"> La dirección de gateway predeterminado de la PC no es válida.</label><br><br>
+        <label><input type="radio" name="q1" value="c"> No lo afectan la EMI ni la RFI.</label><br><br>
+        <label><input type="radio" name="q1" value="d"> El cable no está conectado correctamente a la NIC.</label><br><br>
+        <label><input type="radio" name="q1" value="e"> La dirección IP de la PC no es válida.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q1"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">2. ¿Cuál de estas afirmaciones describe una característica del Protocolo IP?</p>
+    <form onsubmit="return checkAnswer(event, 'q2', ['d'], 'El protocolo IP es un protocolo sin conexión, considerado poco fiable en términos de entrega extremo a extremo.<br>No proporciona control de errores en los casos en que los paquetes de recepción están fuera de orden o en los casos de paquetes faltantes.<br>Se basa en servicios de capa superior, como TCP, para resolver estos problemas.')">
+        <label><input type="radio" name="q2" value="a"> El uso de alambre trenzado para proteger los pares de cables adyacentes.</label><br><br>
+        <label><input type="radio" name="q2" value="b"> El campo magnético alrededor de los pares adyacentes de alambre.</label><br><br>
+        <label><input type="radio" name="q2" value="c"> La colisión causada por dos nodos que intentan usar los medios simultáneamente.</label><br><br>
+        <label><input type="radio" name="q2" value="d"> El reflejo de la onda eléctrica de vuelta desde el extremo lejano del cable.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q2"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">3. ¿Por qué no se necesita NAT en IPv6?</p>
+    <form onsubmit="return checkAnswer(event, 'q3', ['a'], 'La gran cantidad de direcciones IPv6 públicas elimina la necesidad de NAT.<br>Tanto los sitios de las empresas más grandes como los de unidades domésticas pueden obtener direcciones de red IPv6 públicas.<br>Esto evita algunos de los problemas de aplicaciones debidos a NAT que afectan a las aplicaciones que requieren conectividad de extremo a extremo.')">
+        <label><input type="radio" name="q3" value="a"> Cualquier host o usuario puede obtener una dirección de red IPv6 pública porque la cantidad de direcciones IPv6 disponibles es extremadamente grande.</label><br><br>
+        <label><input type="radio" name="q3" value="b"> Se solucionan los problemas de conectividad de extremo a extremo causados por NAT debido a que el número de rutas aumenta con la cantidad de nodos conectados a Internet.</label><br><br>
+        <label><input type="radio" name="q3" value="c"> Dado que IPv6 cuenta con seguridad integrada, no hay necesidad de ocultar las direcciones IPv6 de las redes internas.</label><br><br>
+        <label><input type="radio" name="q3" value="d"> Se solucionan los problemas producidos por aplicaciones NAT debido a que el encabezado de IPv6 mejora el manejo de los paquetes por parte de los routers intermediarios.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q3"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">4. ¿Cuál de estos parámetros utiliza el router para elegir la ruta hacia el destino cuando existen varias rutas disponibles?</p>
+    <form onsubmit="return checkAnswer(event, 'q4', ['d'], 'Cuando un paquete llega a la interfaz del router, este examina el encabezado para determinar la red de destino.<br>Si hay una ruta para la red de destino en la tabla de enrutamiento, el router reenvía el paquete utilizando esa información.<br>Si hay dos o más rutas posibles hacia el mismo destino, se utiliza la métrica para decidir qué ruta aparece en la tabla de enrutamiento.<br>Cuanto menor es la métrica, mejor es la ruta.')">
+        <label><input type="radio" name="q4" value="a"> El valor de métrica más alto que se asocia a la red de destino</label><br><br>
+        <label><input type="radio" name="q4" value="b"> La dirección IP de gateway más baja para llegar a la red de destino</label><br><br>
+        <label><input type="radio" name="q4" value="c"> La dirección IP de gateway más alta para llegar a la red de destino</label><br><br>
+        <label><input type="radio" name="q4" value="d"> El valor de métrica más bajo que se asocia a la red de destino</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q4"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">5. ¿Cuáles de los siguientes son dos servicios que proporciona la capa de red OSI? Elija dos opciones.</p>
+    <form onsubmit="return checkAnswer(event, 'q5', ['a', 'd'], 'La capa de red OSI proporciona varios servicios que permiten la comunicación entre dispositivos:<br><b>-Direccionamiento<br>-Encapsulamiento<br> -Routing<br>-Desencapsulamiento<br></b>La detección de errores, la colocación de datos en el medio y la detección de colisiones son funciones de la capa de enlace de datos.')">
+        <label><input type="checkbox" name="q5" value="a"> Encapsulamiento de PDU de la capa de transporte</label><br><br>
+        <label><input type="checkbox" name="q5" value="b"> Colocación de tramas en los medios</label><br><br>
+        <label><input type="checkbox" name="q5" value="c"> Detección de colisiones</label><br><br>
+        <label><input type="checkbox" name="q5" value="d"> Routing de paquetes hacia el destino</label><br><br>
+        <label><input type="checkbox" name="q5" value="e"> Detección de errores</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q5"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">6. ¿Cuál de las siguientes es una característica básica del protocolo IP?</p>
+    <form onsubmit="return checkAnswer(event, 'q6', ['c'], 'El protocolo de Internet (IP) es un protocolo de capa de red que no requiere ningún intercambio inicial de información de control para establecer una conexión completa antes de reenviar los paquetes.<br>Por lo tanto, IP es un protocolo sin conexión y no proporciona una distribución completa por sí mismo.<br>IP es independiente de los medios.<br>La segmentación de los datos de usuario es un servicio que se proporciona en la capa de transporte.')">
+        <label><input type="radio" name="q6" value="a"> Distribución completa segura</label><br><br>
+        <label><input type="radio" name="q6" value="b"> Dependencia de los medios</label><br><br>
+        <label><input type="radio" name="q6" value="c"> Sin conexión</label><br><br>
+        <label><input type="radio" name="q6" value="d"> Segmentación de los datos de usuario</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q6"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">7. ¿Cuál es el campo de encabezado IPv4 que identifica el protocolo de capa superior transportado en el paquete?</p>
+    <p></p>
+    <form onsubmit="return checkAnswer(event, 'q7', ['b'], 'El campo de protocolo del encabezado IP es el que identifica el protocolo de capa superior que se transporta en el paquete.<br>El campo de versión identifica la versión de IP.<br>El campo de servicios diferenciados se utiliza para establecer la prioridad del paquete.<br>El campo de identificación se utiliza para reordenar los paquetes fragmentados.')">
+        <label><input type="radio" name="q7" value="a"> Servicios diferenciados</label><br><br>
+        <label><input type="radio" name="q7" value="b"> Protocolo</label><br><br>
+        <label><input type="radio" name="q7" value="c"> Identificación</label><br><br>
+        <label><input type="radio" name="q7" value="d"> Versión</label><br><br>
+    </form>
+    <p class="result" id="result-q7"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">8. ¿Cuál es la función del valor CRC que se encuentra en el campo FCS de una trama?</p>
+    <figure>
+        <img src="../images/foto_pregunta8.jpg" alt="foto_pregunta8">
+    </figure>
+    <table>
+        <tr>
+            <th>Paquetes</th>
+            <th>Interfaz</th>
+        </tr>
+        <tr>
+            <td>Paquetes con destino 172.17.6.15</td>
+            <td>FastEthernet0/0</td>
+        </tr>
+        <tr>
+            <td>Paquetes con destino 172.17.14.8</td>
+            <td>FastEthernet0/1</td>
+        </tr>
+        <tr>
+            <td>Paquetes con destino 172.17.12.10</td>
+            <td>FastEthernet1/0</td>
+        </tr>
+        <tr>
+            <td>Paquetes con destino 172.17.10.5</td>
+            <td>FastEthernet1/1</td>
+        </tr>
+        <tr>
+            <td>Paquetes con destino 172.17.8.20</td>
+            <td>Serial0/0/0</td>
+        </tr>
+    </table>
+    <figure>
+        <img src="../images/foto_pregunta8_respuesta.jpg" alt="foto_pregunta8_respuesta" height="500px">
+    </figure>
+    <p><b>Explique:</b><br>
+        Los paquetes con destino 172.17.6.15 se reenvían a través de Fa0/0.<br>
+        Los paquetes con destino 172.17.10.5 se reenvían a través de Fa1/1.<br>
+        Los paquetes con destino 172.17.12.10 se reenvían a través de Fa1/0.<br>
+        Los paquetes con destino 172.17.14.8 se reenvían a través de Fa0/1.<br>
+        Dado que la red 172.17.8.0 no tiene ninguna entrada en la tabla de enrutamiento, tomará el gateway de último recurso, lo que significa que los paquetes con destino 172.17.8.20 se reenvían a través de Serial0/0/0.<br>
+        Dado que existe un gateway de último recurso, no se descarta ningún paquete.
+    </p>
+    <p class="result" id="result-q8"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">9. ¿Qué contiene el tráiler de una trama de enlace de datos?</p>
+    <form onsubmit="return checkAnswer(event, 'q9', ['e'], 'Dado que la prueba de loopback envía paquetes de vuelta al dispositivo host, no proporciona información sobre la conectividad de red a otros hosts.<br>La prueba de loopback verifica que la NIC del host, los controladores y el stack de TCP/IP funcionen.')">
+        <label><input type="radio" name="q9" value="a"> El cable Ethernet funciona correctamente.</label><br><br>
+        <label><input type="radio" name="q9" value="b"> DHCP funciona correctamente.</label><br><br>
+        <label><input type="radio" name="q9" value="c"> El dispositivo tiene conectividad de extremo a extremo.</label><br><br>
+        <label><input type="radio" name="q9" value="d"> El dispositivo tiene la dirección IP correcta en la red.</label><br><br>
+        <label><input type="radio" name="q9" value="e"> El stack de TCP/IP del dispositivo funciona correctamente.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q9"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">10. ¿Cuál de estas afirmaciones describe la función del protocolo de resolución de direcciones?</p>
+    <form onsubmit="return checkAnswer(event, 'q10', ['d'], 'Cuando una PC desea enviar datos por la red, siempre conoce la dirección IP del destino.<br>Sin embargo, también necesita descubrir la dirección MAC del destino.<br>ARP es el protocolo que se utiliza para descubrir la dirección MAC de un host que pertenece a la misma red.')">
+        <label><input type="radio" name="q10" value="a"> El protocolo ARP se utiliza para descubrir la dirección IP de cualquier host en la red local.</label><br><br>
+        <label><input type="radio" name="q10" value="b"> El protocolo ARP se utiliza para descubrir la dirección MAC de cualquier host en una red diferente.</label><br><br>
+        <label><input type="radio" name="q10" value="c"> El protocolo ARP se utiliza para descubrir la dirección IP de cualquier host en una red diferente.</label><br><br>
+        <label><input type="radio" name="q10" value="d"> El protocolo ARP se utiliza para descubrir la dirección MAC de cualquier host en la red local.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q10"></p>
+</div>
+<div class="container_volver">
+    <a href="../index.html" class="link_volver">Volver al inicio</a>
+</div>
+</body>

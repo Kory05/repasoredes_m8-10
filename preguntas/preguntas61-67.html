@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Redes - Parte 7</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body id="p51-60">
+    <script>
+        function checkAnswer(event, questionId, correctAnswers, explanation) {
+            event.preventDefault();
+            let selectedElements = document.querySelectorAll(`input[name="${questionId}"]:checked`);
+            let selectedValues = Array.from(selectedElements).map(el => el.value);
+            let resultElement = document.getElementById(`result-${questionId}`);
+            
+            if (selectedValues.length === 0) {
+                resultElement.textContent = "Por favor, selecciona una respuesta.";
+                resultElement.style.color = "red";
+                return false;
+            }
+            
+            let isCorrect = selectedValues.sort().toString() === correctAnswers.sort().toString();
+            if (isCorrect) {
+                resultElement.innerHTML = "<span style='color: green;'>¡Correcto!</span> " + explanation;
+            } else {
+                resultElement.innerHTML = "<span style='color: red;'>Incorrecto.</span> La respuesta correcta es: " + correctAnswers.join(", ") + ". " + explanation;
+            }
+            return false;
+        }
+    </script>
+    <h1>Módulos 8 – 10: Examen de comunicación entre redes Respuestas</h1>
+    <div class="container_volver">
+        <a href="../index.html" class="link_volver">Volver al inicio</a>
+    </div>
+    <p></p>
+    <div class="question">
+        <p class="titulo-pregunta">61. Refiérase a la exposición. Un administrador de red está conectando un nuevo host a la LAN del Registrador. El host necesita comunicarse con redes remotas. Cual direccion IP debería ser configurada como la puerta de enlace predeterminada de el nuevo host?</p>
+        <figure>
+            <img src="../images/foto_pregunta61.jpg" alt="Foto pregunta 61">
+        </figure>
+        <form onsubmit="return checkAnswer(event, 'q61', ['b'], 'La puerta de enlace siempre debe ser la IP del router <b>en la misma LAN</b> que el host.')">
+            <label><input type="radio" name="q61" value="a"> 192.168.235.1</label><br><br>
+            <label><input type="radio" name="q61" value="b"> 192.168.235.234</label><br><br>
+            <label><input type="radio" name="q61" value="c"> 203.0.113.3</label><br><br>
+            <label><input type="radio" name="q61" value="d"> 192.168.234.114</label><br><br>
+            <label><input type="radio" name="q61" value="e"> 10.234.235.254</label><br><br>
+            <button type="submit">Verificar</button>
+        </form>
+        <p class="result" id="result-q61"></p>
+    </div>
+<!-- # -->
+    <div class="question">
+        <p class="titulo-pregunta">62. ¿Qué propiedad de ARP permite que las direcciones MAC de los servidores de uso frecuente se fijen en la tabla ARP?</p>
+        <form onsubmit="return checkAnswer(event, 'q62', ['b'], 'Solo las <b>entradas estáticas</b> garantizan que una IP-MAC permanezca fija en la tabla ARP.')">
+            <label><input type="radio" name="q62" value="a"> La tabla de direcciones Puerto a MAC de un switch tiene las mismas entradas que la tabla ARP del switch.</label><br><br>
+            <label><input type="radio" name="q62" value="b"> Una entrada de dirección IP a MAC estática se puede introducir manualmente en una tabla ARP.</label><br><br>
+            <label><input type="radio" name="q62" value="c"> Permite que IPv4 e IPv6 utilicen la misma interfaz de red y medios.</label><br><br>
+            <label><input type="radio" name="q62" value="d"> Agrega información de control de capa 2 a los datos de protocolo de red.</label><br><br>
+            <label><input type="radio" name="q62" value="e"> Proporciona sincronización entre nodos de origen y de destino.</label><br><br>
+            <button type="submit">Verificar</button>
+        </form>
+        <p class="result" id="result-q62"></p>
+    </div>
+    
+    <div class="question">
+        <p class="titulo-pregunta">63. ¿Qué término describe un campo en el encabezado de un paquete IPv4 que contiene un valor binario de 8 bits utilizado para determinar la prioridad de cada paquete?</p>
+        <form onsubmit="return checkAnswer(event, 'q63', ['a'], 'Solo el campo <b>Servicios diferenciados</b> (antes ToS) maneja priorización en IPv4.')">
+            <label><input type="radio" name="q63" value="a"> Servicios diferenciados</label><br><br>
+            <label><input type="radio" name="q63" value="b"> Dirección IPv4 de origen</label><br><br>
+            <label><input type="radio" name="q63" value="c"> Dirección IPv4 de destino</label><br><br>
+            <label><input type="radio" name="q63" value="d"> TTL</label><br><br>
+            <button type="submit">Verificar</button>
+        </form>
+        <p class="result" id="result-q63"></p>
+    </div>
+    
+    <div class="question">
+        <p class="titulo-pregunta">64. Observe la imagen. Un administrador de red está conectando un nuevo host a la LAN del Registrador. El host necesita comunicarse con redes remotas. Cual direccion IP debería ser configurada como la puerta de enlace predeterminada de el nuevo host?</p>
+        <figure>
+            <img src="../images/foto_pregunta64.jpg" alt="Foto pregunta 64">
+        </figure>
+        <form onsubmit="return checkAnswer(event, 'q64', ['a'], 'La puerta de enlace siempre debe ser la IP del router <b>en la misma LAN</b> que el host.')">
+            <label><input type="radio" name="q64" value="a"> 192.168.225.223</label><br><br>
+            <label><input type="radio" name="q64" value="b"> 192.168.225.1</label><br><br>
+            <label><input type="radio" name="q64" value="c"> 10.224.225.254</label><br><br>
+            <label><input type="radio" name="q64" value="d"> 203.0.113.246</label><br><br>
+            <label><input type="radio" name="q64" value="e"> 192.168.224.103</label><br><br>
+            <button type="submit">Verificar</button>
+        </form>
+        <p class="result" id="result-q64"></p>
+    </div>
+    
+    <div class="question">
+        <p class="titulo-pregunta">65. ¿Qué propiedad de ARP hace que la solicitud inunde todos los puertos de un switch excepto el puerto que recibe la solicitud ARP?</p>
+        <form onsubmit="return checkAnswer(event, 'q65', ['a'], 'La MAC de broadcast <b>FF-FF-FF-FF-FF-FF</b> es lo que desencadena la inundación en el switch.')">
+            <label><input type="radio" name="q65" value="a"> La dirección MAC de destino FF-FF-FF-FF-FF-FF aparece en el encabezado de la trama Ethernet.</label><br><br>
+            <label><input type="radio" name="q65" value="b"> Las respuestas ARP se transmiten en la red cuando un host recibe una solicitud ARP.</label><br><br>
+            <label><input type="radio" name="q65" value="c"> La dirección MAC de origen aparece en el encabezado de la trama Ethernet.</label><br><br>
+            <label><input type="radio" name="q65" value="d"> El campo de tipo 0x806 aparece en el encabezado de la trama Ethernet.</label><br><br>
+            <button type="submit">Verificar</button>
+        </form>
+        <p class="result" id="result-q65"></p>
+    </div>
+    
+    <div class="question">
+        <p class="titulo-pregunta">66. Observe la imagen. Un administrador de red está conectando un nuevo host a la LAN médica. El host necesita comunicarse con redes remotas. Cual direccion IP debería ser configurada como la puerta de enlace predeterminada de el nuevo host?</p>
+        <figure>
+            <img src="../images/foto_pregunta66.jpg" alt="Foto pregunta 66">
+        </figure>
+        <form onsubmit="return checkAnswer(event, 'q66', ['c'], 'La puerta de enlace siempre debe ser la IP del router <b>en la misma LAN</b> que el host.')">
+            <label><input type="radio" name="q66" value="a"> 10.190.191.254</label><br><br>
+            <label><input type="radio" name="q66" value="b"> 192.168.190.70</label><br><br>
+            <label><input type="radio" name="q66" value="c"> 192.168.191.189</label><br><br>
+            <label><input type="radio" name="q66" value="d"> 198.51.100.213</label><br><br>
+            <label><input type="radio" name="q66" value="e"> 192.168.191.1</label><br><br>
+            <button type="submit">Verificar</button>
+        </form>
+        <p class="result" id="result-q66"></p>
+    </div>
+    
+    <div class="question">
+        <p class="titulo-pregunta">57. ¿Qué término de capa física OSI describe la medida de datos utilizables transferidos durante un período determinado?</p>
+        <form onsubmit="return checkAnswer(event, 'q67', ['c'], 'Solo el <b>TTL</b> controla la duración del paquete en IPv4.')">
+            <label><input type="radio" name="q67" value="a"> Protocolo</label><br><br>
+            <label><input type="radio" name="q67" value="b"> Dirección IPv4 de origen</label><br><br>
+            <label><input type="radio" name="q67" value="c"> TTL</label><br><br>
+            <label><input type="radio" name="q67" value="d"> header checksum</label><br><br>
+            <button type="submit">Verificar</button>
+        </form>
+        <p class="result" id="result-q67"></p>
+    </div>
+    
+    <div class="container_volver">
+        <a href="../index.html" class="link_volver">Volver al inicio</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Redes - Parte 5</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body id="p41-50">
+<script>
+    function checkAnswer(event, questionId, correctAnswers, explanation) {
+        event.preventDefault();
+        let selectedElements = document.querySelectorAll(`input[name="${questionId}"]:checked`);
+        let selectedValues = Array.from(selectedElements).map(el => el.value);
+        let resultElement = document.getElementById(`result-${questionId}`);
+        
+        if (selectedValues.length === 0) {
+            resultElement.textContent = "Por favor, selecciona una respuesta.";
+            resultElement.style.color = "red";
+            return false;
+        }
+        
+        let isCorrect = selectedValues.sort().toString() === correctAnswers.sort().toString();
+        if (isCorrect) {
+            resultElement.innerHTML = "<span style='color: green;'>¡Correcto!</span> " + explanation;
+        } else {
+            resultElement.innerHTML = "<span style='color: red;'>Incorrecto.</span> La respuesta correcta es: " + correctAnswers.join(", ") + ". " + explanation;
+        }
+        return false;
+    }
+</script>
+<h1>Módulos 8 – 10: Examen de comunicación entre redes Respuestas</h1>
+<div class="container_volver">
+    <a href="../index.html" class="link_volver">Volver al inicio</a>
+</div>
+<p></p>
+<div class="question">
+    <p class="titulo-pregunta">41. ¿Qué término describe un campo en el encabezado del paquete IPv4 que contiene un valor binario de 4 bits establecido en 0100?</p>
+    <form onsubmit="return checkAnswer(event, 'q41', ['c'], 'El campo de versión es el único de 4 bits en IPv4 y siempre vale 0100.')">
+        <label><input type="radio" name="q41" value="a"> header checksum</label><br><br>
+        <label><input type="radio" name="q41" value="b"> TTL</label><br><br>
+        <label><input type="radio" name="q41" value="c"> versión</label><br><br>
+        <label><input type="radio" name="q41" value="d"> Servicios diferenciados</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q41"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">42. ¿Qué propiedad de ARP hace que las NIC que reciben una solicitud ARP pasen la parte de datos de la trama Ethernet al proceso ARP?</p>
+    <form onsubmit="return checkAnswer(event, 'q42', ['a'], 'El valor 0x806 es el que determina que el payload sea procesado por ARP.')">
+        <label><input type="radio" name="q42" value="a"> El campo de tipo 0x806 aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <label><input type="radio" name="q42" value="b"> Las respuestas ARP se transmiten en la red cuando un host recibe una solicitud ARP.</label><br><br>
+        <label><input type="radio" name="q42" value="c"> La dirección MAC de destino FF-FF-FF-FF-FF-FF aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <label><input type="radio" name="q42" value="d">Las entradas de una tabla ARP tienen una marca de tiempo y se purgan después de que expire el tiempo de espera.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q42"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">43. Observe la imagen. Un administrador de red está conectando un nuevo host a la LAN médica. El host necesita comunicarse con redes remotas. Cual direccion IP debería ser configurada como la puerta de enlace predeterminada de el nuevo host?</p>
+    <figure>
+        <img src="../images/foto_pregunta43.jpg" alt="Foto pregunta 43">
+    </figure>
+    <form onsubmit="return checkAnswer(event, 'q43', ['c'], 'La puerta de enlace siempre debe ser la IP del router <b>en la misma LAN</b> que el host.')">
+        <label><input type="radio" name="q43" value="a"> 10.200.201.254</label><br><br>
+        <label><input type="radio" name="q43" value="b"> 192.168.201.1</label><br><br>
+        <label><input type="radio" name="q43" value="c"> 192.168.201.200</label><br><br>
+        <label><input type="radio" name="q43" value="d"> 192.168.200.80</label><br><br>
+        <label><input type="radio" name="q43" value="e"> 203.0.113.222</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q43"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">44. ¿Cuál es el campo del encabezado de IPv4 que se utiliza para evitar que un paquete atraviese una red incesantemente?</p>
+    <form onsubmit="return checkAnswer(event, 'q44', ['b'], 'El valor del campo de tiempo de duración (TTL) del encabezado de IPv4 es el que se utiliza para limitar la vida útil de un paquete.<br>El host emisor establece el valor inicial de TTL que se reduce en uno cada vez que un router procesa el paquete.<br>Si el campo TTL llega a cero, el router descarta el paquete y envía a la dirección IP de origen un mensaje de tiempo superado del protocolo de mensajes de control de Internet (ICMP).<br>El campo de servicios diferenciados (DS) se utiliza para determinar la prioridad de cada paquete.<br>Los campos de número de secuencia y de número de acuse de recibo se encuentran en el encabezado TCP.')">
+        <label><input type="radio" name="q44" value="a"> Número de secuencia</label><br><br>
+        <label><input type="radio" name="q44" value="b"> Tiempo de duración</label><br><br>
+        <label><input type="radio" name="q44" value="c"> Servicios diferenciados</label><br><br>
+        <label><input type="radio" name="q44" value="d"> Número de acuse de recibo</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q44"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">45. ¿Qué entrada de la tabla de routing tiene una dirección de siguiente salto asociada con una red de destino?</p>
+    <form onsubmit="return checkAnswer(event, 'q45', ['b'], 'En la tabla de routing, las entradas de rutas remotas tienen una dirección IP de siguiente salto.<br>Esta es la dirección IP de la interfaz de router del siguiente dispositivo que se utilizará para llegar a la red de destino.<br>Las rutas locales y conectadas directamente no tienen un siguiente salto porque no se requiere atravesar otro router para llegar a ellas.')">
+        <label><input type="radio" name="q45" value="a"> Rutas locales</label><br><br>
+        <label><input type="radio" name="q45" value="b"> Rutas remotas</label><br><br>
+        <label><input type="radio" name="q45" value="c"> Rutas conectadas directamente</label><br><br>
+        <label><input type="radio" name="q45" value="d"> Rutas de origen C y L</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q45"></p>
+
+</div>
+<div class="question">
+    <p class="titulo-pregunta">46. ¿Cómo aseguran los hosts que los paquetes se dirijan al destino de red correcto?</p>
+    <form onsubmit="return checkAnswer(event, 'q45', ['d'], 'Los hosts deben mantener su propia tabla de enrutamiento local para asegurar que los paquetes de la capa de red se dirijan a la red de destino correcta.<br>Por lo general, esta tabla local contiene una ruta hacia la interfaz loopback, una ruta hacia la red a la cual está conectado el host y una ruta predeterminada local, la cual representa la ruta que los paquetes deben seguir para llegar a todas las direcciones de red remotas.')">
+        <label><input type="radio" name="q46" value="a"> Envían un paquete de consulta al gateway predeterminado en el que preguntan por la ruta más adecuada.</label><br><br>
+        <label><input type="radio" name="q46" value="b"> Buscan una ruta hacia la dirección de destino de red en su propia tabla de enrutamiento local y transmiten esta información al gateway predeterminado.</label><br><br>
+        <label><input type="radio" name="q46" value="c"> Siempre dirigen los paquetes al gateway predeterminado, que es responsable de la entrega de los paquetes.</label><br><br>
+        <label><input type="radio" name="q46" value="d"> Deben mantener su propia tabla de enrutamiento local que contenga una ruta a la interfaz loopback, una ruta de red local y una ruta predeterminada remota.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+</div>
+<div class="question">
+    <p class="titulo-pregunta">47. Cuando se transportan datos de aplicaciones en tiempo real, como streaming audio y video, ¿qué campo en el encabezado de IPv6 se puede utilizar para informar a los routers y los switches que deben mantener la misma ruta para los paquetes en la misma conversación?</p>
+    <form onsubmit="return checkAnswer(event, 'q47', ['a'], 'El campo Identificador de flujo del encabezado de IPv6 es un campo de 20 bits que proporciona un servicio especial para aplicaciones en tiempo real.<br>Este campo se puede utilizar para indicar a los routers y switches que deben mantener la misma ruta para el flujo de paquetes, a fin de evitar que estos se reordenen.')">
+        <label><input type="radio" name="q47" value="a"> Identificador de flujo</label><br><br>
+        <label><input type="radio" name="q47" value="b"> Siguiente encabezado</label><br><br>
+        <label><input type="radio" name="q47" value="c"> Clase de tráfico</label><br><br>
+        <label><input type="radio" name="q47" value="d"> Servicios diferenciados</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q47"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">48. Cuando se transportan datos de aplicaciones en tiempo real, como streaming audio y video, ¿qué campo en el encabezado de IPv6 se puede utilizar para informar a los routers y los switches que deben mantener la misma ruta para los paquetes en la misma conversación?</p>
+    <form onsubmit="return checkAnswer(event, 'q48', ['d'], 'Al emitir el comando <b>arp –d *</b> en una PC, se borra el contenido de la caché ARP.<br>Esto resulta útil cuando un técnico de redes quiere asegurarse de que la caché contenga información actualizada.')">
+        <label><input type="radio" name="q48" value="a"> Se muestra el contenido actual de la caché ARP.</label><br><br>
+        <label><input type="radio" name="q48" value="b"> Se sincroniza la caché ARP con la interfaz de router.</label><br><br>
+        <label><input type="radio" name="q48" value="c"> Se muestra la información detallada de la caché ARP.</label><br><br>
+        <label><input type="radio" name="q48" value="d"> Se borra la caché ARP.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q48"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">49. Consulte la ilustración. En la ilustración, se muestra una pequeña red conmutada y el contenido de la tabla de direcciones MAC del switch. La PC1 envió una trama dirigida a la PC3. ¿Qué hará el switch con la trama?</p>
+    <figure>
+        <img src="../images/foto_pregunta49.jpg" alt="Foto pregunta 49">
+    </figure>
+    <form onsubmit="return checkAnswer(event, 'q49', ['a'], 'La dirección MAC de la PC3 no figura en la tabla MAC del switch. Dado que el switch no sabe dónde enviar la trama dirigida a la PC3, la reenvía a todos los puertos, excepto el puerto 4, que es el puerto de entrada.<br>Esto se conoce como <b>difusión</b>.')">
+        <label><input type="radio" name="q49" value="a"> El switch reenviará la trama a todos los puertos, excepto al puerto 4.</label><br><br>
+        <label><input type="radio" name="q49" value="b"> El switch reenviará la trama a todos los puertos.</label><br><br>
+        <label><input type="radio" name="q49" value="c"> El switch descartará la trama.</label><br><br>
+        <label><input type="radio" name="q49" value="d"> El switch reenviará la trama solamente al puerto 2.</label><br><br>
+        <label><input type="radio" name="q49" value="e"> El switch reenviará la trama solamente a los puertos 1 y 3.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q49"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">50. ¿Qué término describe un campo en el encabezado de un paquete IPv4 utilizado para identificar el protocolo de siguiente nivel?</p>
+    <form onsubmit="return checkAnswer(event, 'q50', ['d'], 'El campo <b>Protocolo</b> es el único que cumple esta función específica.')">
+        <label><input type="radio" name="q50" value="a"> Dirección IPv4 de origen</label><br><br>
+        <label><input type="radio" name="q50" value="b"> Dirección IPv4 de destino</label><br><br>
+        <label><input type="radio" name="q50" value="c"> TTL</label><br><br>
+        <label><input type="radio" name="q50" value="d"> protocolo</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q50"></p>
+</div>
+<div class="container_volver">
+    <a href="../index.html" class="link_volver">Volver al inicio</a>
+</div>
+</body>
+</html>

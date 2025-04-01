@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Redes - Parte 4</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body id="p31-40">
+<script>
+    function checkAnswer(event, questionId, correctAnswers, explanation) {
+        event.preventDefault();
+        let selectedElements = document.querySelectorAll(`input[name="${questionId}"]:checked`);
+        let selectedValues = Array.from(selectedElements).map(el => el.value);
+        let resultElement = document.getElementById(`result-${questionId}`);
+        
+        if (selectedValues.length === 0) {
+            resultElement.textContent = "Por favor, selecciona una respuesta.";
+            resultElement.style.color = "red";
+            return false;
+        }
+        
+        let isCorrect = selectedValues.sort().toString() === correctAnswers.sort().toString();
+        if (isCorrect) {
+            resultElement.innerHTML = "<span style='color: green;'>¡Correcto!</span> " + explanation;
+        } else {
+            resultElement.innerHTML = "<span style='color: red;'>Incorrecto.</span> La respuesta correcta es: " + correctAnswers.join(", ") + ". " + explanation;
+        }
+        return false;
+    }
+</script>
+<h1>Módulos 8 – 10: Examen de comunicación entre redes Respuestas</h1>
+<div class="container_volver">
+    <a href="../index.html" class="link_volver">Volver al inicio</a>
+</div>
+<p></p>
+<div class="question">
+    <p class="titulo-pregunta">31. ¿Qué término describe un campo en el encabezado de un paquete IPv4 que contiene un valor binario de 4 bits establecido en 0100?</p>
+    <form onsubmit="return checkAnswer(event, 'q31', ['a'], 'Los 4 bits iniciales del encabezado IPv4 identifican la versión.')">
+        <label><input type="radio" name="q31" value="a"> versión</label><br><br>
+        <label><input type="radio" name="q31" value="b"> TTL</label><br><br>
+        <label><input type="radio" name="q31" value="c"> Protocolo</label><br><br>
+        <label><input type="radio" name="q31" value="d"> Dirección IPv4 de origen</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q31"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">32. ¿Qué propiedad de ARP permite a los hosts de una LAN enviar tráfico a redes remotas?</p>
+    <form onsubmit="return checkAnswer(event, 'q32', ['d'], 'ARP resuelve la MAC del gateway, permitiendo el envío de tráfico externo.')">
+        <label><input type="radio" name="q32" value="a"> Las respuestas ARP se transmiten en la red cuando un host recibe una solicitud ARP.</label><br><br>
+        <label><input type="radio" name="q32" value="b"> La dirección MAC de destino FF-FF-FF-FF-FF-FF aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <label><input type="radio" name="q32" value="c"> La dirección MAC de origen aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <label><input type="radio" name="q32" value="d"> Los host locales aprenden la dirección MAC del la puerta de enlace predeterminada.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q32"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">33. ¿Qué dos funciones se realizan en la subcapa LLC de la capa de enlace de datos OSI? (Escoja dos opciones).</p>
+    <figure>
+        <img src="../images/foto_pregunta33.jpg" alt="Foto pregunta 33">
+    </figure>
+    <form onsubmit="return checkAnswer(event, 'q33', ['a'], 'La puerta de enlace debe ser la IP del router en la misma subred que el host.')">
+        <label><input type="radio" name="q33" value="a"> 172.19.98.230</label><br><br>
+        <label><input type="radio" name="q33" value="b"> 10.98.99.254</label><br><br>
+        <label><input type="radio" name="q33" value="c"> 172.19.99.99</label><br><br>
+        <label><input type="radio" name="q33" value="d"> 172.19.98.1</label><br><br>
+        <label><input type="radio" name="q33" value="e"> 209.165.200.120</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q33"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">34. Dentro de una red de producción, ¿cuál es el propósito de configurar un switch con una dirección de gateway predeterminado?</p>
+    <form onsubmit="return checkAnswer(event, 'q34', ['c'], 'La dirección de gateway predeterminado permite que un switch reenvíe paquetes originados en ese switch a redes remotas.<br>Una dirección de gateway predeterminado en un switch no proporciona routing de capa 3 para las PC que están conectadas a ese switch.<br>Se puede acceder a un switch desde Telnet siempre y cuando el origen de la conexión Telnet esté en la red local.')">
+        <label><input type="radio" name="q34" value="a"> Un switch debe tener un gateway predeterminado para que se pueda acceder a este por Telnet y SSH.</label><br><br>
+        <label><input type="radio" name="q34" value="b"> Los hosts que están conectados al switch pueden utilizar la dirección de gateway predeterminado del switch para reenviar paquetes a un destino remoto.</label><br><br>
+        <label><input type="radio" name="q34" value="c"> La dirección de gateway predeterminado se utiliza para reenviar los paquetes originados en el switch a las redes remotas.</label><br><br>
+        <label><input type="radio" name="q34" value="d"> Proporciona una dirección de siguiente salto para todo el tráfico que fluye a través del switch.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q34"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">35. ¿Cuál es una de las ventajas que ofrece el encabezado de IPv6 simplificado sobre el IPv4?</p>
+    <form onsubmit="return checkAnswer(event, 'q35', ['c'], 'El encabezado de IPv6 simplificado ofrece varias ventajas sobre el IPv4: <br>· Mayor eficacia de routing para un buen rendimiento y una buena escalabilidad de velocidad de reenvío <br>· Ningún requisito de procesamiento de checksums <br>· Mecanismos de encabezado de extensión simplificados y más eficaces (en comparación con el campo Opciones de IPv4) <br>· Un campo de identificador de flujo para procesamiento por flujo, sin necesidad de abrir el paquete interno de transporte para identificar los distintos flujos de tráfico')">
+        <label><input type="radio" name="q35" value="a"> Encabezado de menor tamaño</label><br><br>
+        <label><input type="radio" name="q35" value="b"> Pocos requisitos de procesamiento de checksums</label><br><br>
+        <label><input type="radio" name="q35" value="c"> Manejo eficaz de paquetes</label><br><br>
+        <label><input type="radio" name="q35" value="d"> Direcciones IP de origen y destino de menor tamaño</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q35"></p>
+</div>
+<div class="question">
+    <p class="titulo-pregunta">36. ¿Cuáles son las dos circunstancias en las que un switch satura una trama por todos los puertos, excepto aquel por el que la recibió? Elija dos opciones.</p>
+    <form onsubmit="return checkAnswer(event, 'q36', ['a', 'e'], 'Un switch satura una trama por todos los puertos, excepto aquel por el que la recibió, en dos circunstancias: si la trama tiene la dirección de difusión como dirección de destino o si el switch no conoce la dirección de destino.')">
+        <label><input type="checkbox" name="q36" value="a"> La trama tiene la dirección de difusión como dirección de destino.</label><br><br>
+        <label><input type="checkbox" name="q36" value="b"> La dirección de origen en la trama es una dirección de multidifusión.</label><br><br>
+        <label><input type="checkbox" name="q36" value="c"> La dirección de origen en el encabezado de la trama es la dirección de difusión.</label><br><br>
+        <label><input type="checkbox" name="q36" value="d"> La dirección de destino en la trama es una dirección de unidifusión conocida.</label><br><br>
+        <label><input type="checkbox" name="q36" value="e"> El switch no conoce la dirección de destino.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q36"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">37. ¿Cuál de las siguientes afirmaciones describe el tratamiento de las solicitudes de ARP en el enlace local</p>
+    <form onsubmit="return checkAnswer(event, 'q37', ['d'], 'Una de las cuestiones negativas de las solicitudes de ARP es que se transmiten por difusión.<br>Esto significa que todos los dispositivos del enlace local deben recibirlas y procesarlas.')">
+        <label><input type="radio" name="q37" value="a"> Las recibe y las procesa solamente el dispositivo objetivo.</label><br><br>
+        <label><input type="radio" name="q37" value="b"> Las descartan todos los switches de la red local.</label><br><br>
+        <label><input type="radio" name="q37" value="c"> Deben reenviarlas todos los routers de la red local.</label><br><br>
+        <label><input type="radio" name="q37" value="d"> Las reciben y las procesan todos los dispositivos de la red local.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q37"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">38. Se ha pedido a un nuevo administrador de red que introduzca un banner en un dispositivo Cisco. ¿Cuál es la forma más rápida en que un administrador de red podría probar si el banner está configurado correctamente?</p>
+    <form onsubmit="return checkAnswer(event, 'q38', ['c'], 'Mientras esté en modo privilegiado, como Router#, escriba exit , presione Enter y aparecerá el mensaje de banner. El ciclo de encendido de un dispositivo de red al que se ha emitido el comando banner motd también mostrará el mensaje de banner, pero esta no es una forma rápida de probar la configuración.')">
+        <label><input type="radio" name="q38" value="a"> Reiniciar el dispositivo.</label><br><br>
+        <label><input type="radio" name="q38" value="b"> Salir del modo de configuración global.</label><br><br>
+        <label><input type="radio" name="q38" value="c"> Salgir del modo EXEC privilegiado y pulsar Enter .</label><br><br>
+        <label><input type="radio" name="q38" value="d"> Escribir CTRL-Z en la solicitud de modo privilegiado.</label><br><br>
+        <label><input type="radio" name="q38" value="e"> Apagar y encender el dispositivo.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q38"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">39. Consulte la ilustración. Un usuario en una PC ha transmitido correctamente paquetes a www.cisco.com. ¿A qué dirección IP envia el PC del usuario sus datos fuera de la red local?</p>
+    <figure>
+        <img src="../images/foto_pregunta39.jpg" alt="Foto pregunta 39">
+    </figure>
+    <form onsubmit="return checkAnswer(event, 'q39', ['d'], 'Cuando un host envía paquetes a un destino fuera de su red local, la dirección IP del primer salto encontrada es la puerta de enlace predeterminada.')">
+        <label><input type="radio" name="q39" value="b"> 172.24.1.22</label><br><br>
+        <label><input type="radio" name="q39" value="c"> 172.20.1.18</label><br><br>
+        <label><input type="radio" name="q39" value="d"> 172.20.0.254</label><br><br>
+        <label><input type="radio" name="q39" value="a"> 172.24.255.4</label><br><br>
+        <label><input type="radio" name="q39" value="e"> 172.24.255.17</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q39"></p>
+</div>
+<div class="question">
+    <p class="titulo-pregunta">40. ¿Cuáles son las dos funciones principales de un router? Elija dos opciones.</p>
+    <form onsubmit="return checkAnswer(event, 'q40', ['a', 'c'], 'El router acepta el paquete, accede a su tabla de enrutamiento para determinar la interfaz de salida apropiada según la dirección de destino.<br>A continuación, el router reenvía el paquete fuera de esa interfaz.')">
+        <label><input type="checkbox" name="q40" value="a"> Selección de rutas</label><br><br>
+        <label><input type="checkbox" name="q40" value="b"> Resolución de nombres de dominio</label><br><br>
+        <label><input type="checkbox" name="q40" value="c"> Envío de paquetes</label><br><br>
+        <label><input type="checkbox" name="q40" value="d"> Microsegmentación</label><br><br>
+        <label><input type="checkbox" name="q40" value="e"> Control del flujo</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q40"></p>
+</div>
+<div class="container_volver">
+    <a href="../index.html" class="link_volver">Volver al inicio</a>
+</div>
+</body>
+</html>

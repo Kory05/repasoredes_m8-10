@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Redes - Parte 6</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body id="p51-60">
+<script>
+    function checkAnswer(event, questionId, correctAnswers, explanation) {
+        event.preventDefault();
+        let selectedElements = document.querySelectorAll(`input[name="${questionId}"]:checked`);
+        let selectedValues = Array.from(selectedElements).map(el => el.value);
+        let resultElement = document.getElementById(`result-${questionId}`);
+        
+        if (selectedValues.length === 0) {
+            resultElement.textContent = "Por favor, selecciona una respuesta.";
+            resultElement.style.color = "red";
+            return false;
+        }
+        
+        let isCorrect = selectedValues.sort().toString() === correctAnswers.sort().toString();
+        if (isCorrect) {
+            resultElement.innerHTML = "<span style='color: green;'>¡Correcto!</span> " + explanation;
+        } else {
+            resultElement.innerHTML = "<span style='color: red;'>Incorrecto.</span> La respuesta correcta es: " + correctAnswers.join(", ") + ". " + explanation;
+        }
+        return false;
+    }
+</script>
+<h1>Módulos 8 – 10: Examen de comunicación entre redes Respuestas</h1>
+<div class="container_volver">
+    <a href="../index.html" class="link_volver">Volver al inicio</a>
+</div>
+<p></p>
+<div class="question">
+    <p class="titulo-pregunta">51. ¿Qué propiedad de ARP obliga a todas las NIC Ethernet a procesar una solicitud ARP?</p>
+    <form onsubmit="return checkAnswer(event, 'q51', ['a'], 'La MAC de broadcast <b>FF-FF-FF-FF-FF-FF</b> es lo que garantiza que todas las NIC procesen la solicitud ARP.')">
+        <label><input type="radio" name="q51" value="a"> La dirección MAC de destino FF-FF-FF-FF-FF-FF aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <label><input type="radio" name="q51" value="b"> Las respuestas ARP se transmiten en la red cuando un host recibe una solicitud ARP.</label><br><br>
+        <label><input type="radio" name="q51" value="c"> Las respuestas ARP se transmiten en la red cuando un host recibe una solicitud ARP.</label><br><br>
+        <label><input type="radio" name="q51" value="d"> La dirección MAC de origen aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <label><input type="radio" name="q51" value="e"> El campo de tipo 0x806 aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q51"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">52. Observe la imagen. Un administrador de red está conectando un nuevo host a la LAN Payroll. El host necesita comunicarse con redes remotas. Cual direccion IP debería ser configurada como la puerta de enlace predeterminada de el nuevo host?</p>
+    <figure>
+        <img src="../images/foto_pregunta52.jpg" alt="Foto pregunta 52">
+    </figure>
+    <form onsubmit="return checkAnswer(event, 'q52', ['c'], 'La puerta de enlace siempre debe ser la IP del router <b>en la misma LAN</b> que el host.')">
+        <label><input type="radio" name="q52" value="a"> 10.27.15.17</label><br><br>
+        <label><input type="radio" name="q52" value="b"> 203.0.113.39</label><br><br>
+        <label><input type="radio" name="q52" value="c"> 10.27.14.148</label><br><br>
+        <label><input type="radio" name="q52" value="d"> 10.14.15.254</label><br><br>
+        <label><input type="radio" name="q52" value="e"> 10.27.14.1</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q52"></p>
+</div>
+<div class="question">
+    <p class="titulo-pregunta">53. ¿Qué sucede cuando se ingresa el comando transport input ssh en las líneas vty del switch?</p>
+    <form onsubmit="return checkAnswer(event, 'q53', ['d'], 'El comando transport input ssh cuando se introduce en el switch vty (líneas de terminal virtuales) cifrará todas las conexiones entrantes.')">
+        <label><input type="radio" name="q53" value="a"> El cliente SSH en el switch está habilitado.</label><br><br>
+        <label><input type="radio" name="q53" value="b"> El switch requiere una combinación de nombre de usuario/contraseña para el acceso remoto.</label><br><br>
+        <label><input type="radio" name="q53" value="c"> El switch requiere conexiones remotas a través de un software cliente propietario.</label><br><br>
+        <label><input type="radio" name="q53" value="d"> La comunicación entre el switch y los usuarios remotos está cifrada.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q53"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">54. ¿Qué término describe un campo en el encabezado del paquete IPv4 que contiene una dirección de unidifusión, multidifusión o difusión?</p>
+    <form onsubmit="return checkAnswer(event, 'q54', ['a'], 'Solo el campo de dirección destino en IPv4 está diseñado para contener estos tipos de direcciones <b>unicast/multicast/broadcast</b>.')">
+        <label><input type="radio" name="q54" value="a"> header checksum</label><br><br>
+        <label><input type="radio" name="q54" value="b"> Protocolo</label><br><br>
+        <label><input type="radio" name="q54" value="c"> TTL</label><br><br>
+        <label><input type="radio" name="q54" value="d"> dirección IPv4 de destino</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q54"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">55. ¿Qué propiedad de ARP causa una respuesta sólo a origen que envía una solicitud ARP?</p>
+    <form onsubmit="return checkAnswer(event, 'q55', ['d'], 'La <b>MAC de origen</b> en la solicitud ARP determina el destino de la respuesta.')">
+        <label><input type="radio" name="q55" value="a"> Las respuestas ARP se transmiten en la red cuando un host recibe una solicitud ARP.</label><br><br>
+        <label><input type="radio" name="q55" value="b"> El campo de tipo 0x806 aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <label><input type="radio" name="q55" value="c"> La dirección MAC de destino FF-FF-FF-FF-FF-FF aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <label><input type="radio" name="q55" value="d"> La dirección MAC de origen aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q55"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">56. Observe la imagen. Un administrador de red está conectando un nuevo host a la LAN de servicio. El host necesita comunicarse con redes remotas. Cual direccion IP debería ser configurada como la puerta de enlace predeterminada de el nuevo host?</p>
+    <figure>
+        <img src="../images/foto_pregunta56.jpg" alt="Foto pregunta 56">
+    </figure>
+    <form onsubmit="return checkAnswer(event, 'q56', ['b'], 'La puerta de enlace siempre debe ser la IP del router <b>en la misma LAN</b> que el host.')">
+        <label><input type="radio" name="q56" value="a"> 192.168.166.46</label><br><br>
+        <label><input type="radio" name="q56" value="b"> 192.168.167.166</label><br><br>
+        <label><input type="radio" name="q56" value="c"> 10.166.167.254</label><br><br>
+        <label><input type="radio" name="q56" value="d"> 192.168.167.1</label><br><br>
+        <label><input type="radio" name="q56" value="e"> 198.51.100.189</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q56"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">57. ¿Qué término describe un campo en el encabezado de un paquete IPv4 utilizado para detectar daños en el encabezado IPv4?</p>
+    <form onsubmit="return checkAnswer(event, 'q57', ['c'], 'Solo el <b>header checksum</b> está diseñado para detectar daños en el encabezado.')">
+        <label><input type="radio" name="q57" value="a"> Dirección IPv4 de origen</label><br><br>
+        <label><input type="radio" name="q57" value="b"> Protocolo</label><br><br>
+        <label><input type="radio" name="q57" value="c"> header checksum</label><br><br>
+        <label><input type="radio" name="q57" value="d"> TTL</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q57"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">58. Observe la imagen. Un administrador de red está conectando un nuevo host a Manager LAN. El host necesita comunicarse con redes remotas. Cual direccion IP debería ser configurada como la puerta de enlace predeterminada de el nuevo host?</p>
+    <h3>No hay foto, lo siento 😔</h3>
+    <p>Marco en rojo la respuesta correcta</p>
+    <form onsubmit="return checkAnswer(event, 'q58', ['a'], 'potato')">
+        <label style="color: red;">
+            <input type="radio" name="q58" value="a"> 10.118.62.196
+        </label><br><br>
+        <label><input type="radio" name="q58" value="b"> 10.62.63.254</label><br><br>
+        <label><input type="radio" name="q58" value="c"> 10.118.63.65</label><br><br>
+        <label><input type="radio" name="q58" value="d"> 209.165.200.87</label><br><br>
+        <label><input type="radio" name="q58" value="e"> 10.118.62.1</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q58"></p>
+</div>
+<div class="question">
+    <p class="titulo-pregunta">59. ¿Qué término describe un campo en el encabezado de un paquete IPv4 que contiene un valor binario de 32 bits asociado a una interfaz en el dispositivo de envío?</p>
+    <form onsubmit="return checkAnswer(event, 'q59', ['a'], 'La <b>dirección IPv4 de origen</b> cumple exactamente con esta descripción (32 bits + identifica al emisor).')">
+        <label><input type="radio" name="q59" value="a"> Dirección IPv4 de origen</label><br><br>
+        <label><input type="radio" name="q59" value="b"> Protocolo</label><br><br>
+        <label><input type="radio" name="q59" value="c"> TTL</label><br><br>
+        <label><input type="radio" name="q59" value="d"> header checksum</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q59"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">60. ¿Qué propiedad de ARP hace que las asignaciones de IP a MAC almacenadas en caché permanezcan más tiempo en la memoria?</p>
+    <form onsubmit="return checkAnswer(event, 'q60', ['b'], 'El <b>temporizador de entradas ARP</b> es lo que permite que las asignaciones duren más en memoria.')">
+        <label><input type="radio" name="q60" value="a"> La tabla de direcciones Puerto a MAC de un switch tiene las mismas entradas que la tabla ARP del switch.</label><br><br>
+        <label><input type="radio" name="q60" value="b"> Las entradas de una tabla ARP tienen una marca de tiempo y se purgan después de que expire el tiempo de espera.</label><br><br>
+        <label><input type="radio" name="q60" value="c"> El campo de tipo 0x806 aparece en el encabezado de la trama Ethernet.</label><br><br>
+        <label><input type="radio" name="q60" value="d"> Una entrada de dirección IP a MAC estática se puede introducir manualmente en una tabla ARP.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q60"></p>
+</div>
+<div class="container_volver">
+    <a href="../index.html" class="link_volver">Volver al inicio</a>
+</div>
+</body>
+</html>

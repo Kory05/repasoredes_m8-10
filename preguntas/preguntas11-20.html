@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Redes - Parte 2</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body id="p11-20">
+<script>
+    function checkAnswer(event, questionId, correctAnswers, explanation) {
+        event.preventDefault();
+        let selectedElements = document.querySelectorAll(`input[name="${questionId}"]:checked`);
+        let selectedValues = Array.from(selectedElements).map(el => el.value);
+        let resultElement = document.getElementById(`result-${questionId}`);
+        
+        if (selectedValues.length === 0) {
+            resultElement.textContent = "Por favor, selecciona una respuesta.";
+            resultElement.style.color = "red";
+            return false;
+        }
+        
+        let isCorrect = selectedValues.sort().toString() === correctAnswers.sort().toString();
+        if (isCorrect) {
+            resultElement.innerHTML = "<span style='color: green;'>¡Correcto!</span> " + explanation;
+        } else {
+            resultElement.innerHTML = "<span style='color: red;'>Incorrecto.</span> La respuesta correcta es: " + correctAnswers.join(", ") + ". " + explanation;
+        }
+        return false;
+    }
+</script>
+<h1>Módulos 8 – 10: Examen de comunicación entre redes Respuestas</h1>
+<div class="container_volver">
+    <a href="../index.html" class="link_volver">Volver al inicio</a>
+</div>
+<p></p>
+<div class="question">
+    <p class="titulo-pregunta">11. ¿Qué dirección de destino se utiliza en un marco de solicitud ARP?</p>
+    <form onsubmit="return checkAnswer(event, 'q11', ['a'], 'El propósito de una solicitud ARP es encontrar la dirección MAC del host de destino en una LAN Ethernet.<br>El proceso ARP envía una difusión de Capa 2 a todos los dispositivos de la LAN Ethernet.<br>La trama contiene la dirección IP del destino y la dirección MAC de difusión, FFFF.FF.FFFF.<br>El host con la dirección IP que coincide con la dirección IP de la solicitud ARP responderá con un marco de unidifusión que incluye la dirección MAC del host.<br>Por lo tanto, el host de envío original obtendrá el par de direcciones IP y MAC de destino para continuar el proceso de encapsulación para la transmisión de datos.')">
+        <label><input type="radio" name="q11" value="a"> FFFF.FFFF.FFFF</label><br><br>
+        <label><input type="radio" name="q11" value="b"> 255.255.255.255</label><br><br>
+        <label><input type="radio" name="q11" value="c"> La dirección física del host de destino</label><br><br>
+        <label><input type="radio" name="q11" value="d"> 0.0.0.0</label><br><br>
+        <label><input type="radio" name="q11" value="d"> AAAA.AAAA.AAAA</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q11"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">12. ¿Qué dos tipos de mensajes IPv6 se utilizan en lugar de ARP para la resolución de direcciones?</p>
+    <form onsubmit="return checkAnswer(event, 'q12', ['d', 'e'], 'IPv6 no utiliza ARP.<br>En su lugar, la detección de vecinos usa mensajes de solicitud y anuncio de vecinos del ICMPv6.')">
+        <label><input type="checkbox" name="q12" value="a"> Solicitud Echo</label><br><br>
+        <label><input type="checkbox" name="q12" value="b"> Echo ICMP</label><br><br>
+        <label><input type="checkbox" name="q12" value="c"> Anycast</label><br><br>
+        <label><input type="checkbox" name="q12" value="d"> Anuncio de vecino (NA)</label><br><br>
+        <label><input type="checkbox" name="q12" value="e"> Solicitud de vecino (NS)</label><br><br>
+        <label><input type="checkbox" name="q12" value="f"> Broadcast</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q12"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">13. ¿Cuál es el objetivo de un ataque de suplantación de ARP?</p>
+    <form onsubmit="return checkAnswer(event, 'q13', ['b'], 'En un ataque de suplantación de ARP, un host malicioso intercepta las solicitudes ARP y les responde de forma tal que los hosts de la red asignen una dirección IP a la dirección MAC del host malicioso.')">
+        <label><input type="radio" name="q13" value="a"> Abrumar a los hosts de la red con solicitudes ARP.</label><br><br>
+        <label><input type="radio" name="q13" value="b"> Asociar direcciones IP con direcciones MAC incorrectas.</label><br><br>
+        <label><input type="radio" name="q13" value="c"> Inundar la red con transmisiones de respuesta de ARP.</label><br><br>
+        <label><input type="radio" name="q13" value="d"> Llenar las tablas de direcciones MAC del switch con direcciones falsas.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q13"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">14. ¿Cuál de las siguientes es una característica de la subcapa LLC?</p>
+    <figure>
+        <img src="../images/foto_pregunta14.jpg" alt="foto ">
+    </figure>
+    <form onsubmit="return checkAnswer(event, 'q14', ['b'], 'La PC1 debe tener una dirección MAC para utilizarla como dirección de capa 2 de destino.<br>La PC1 enviará una solicitud de ARP como difusión y R1 devolverá una respuesta de ARP con su dirección MAC de interfaz G0/0.<br>La PC1, luego, puede reenviar el paquete a la dirección MAC del gateway predeterminado, R1.')">
+        <label><input type="radio" name="q14" value="a"> La dirección MAC del S1.</label><br><br>
+        <label><input type="radio" name="q14" value="b"> La dirección MAC de la interfaz G0/0 del R1.</label><br><br>
+        <label><input type="radio" name="q14" value="c"> La dirección MAC del S2.</label><br><br>
+        <label><input type="radio" name="q14" value="d"> La dirección MAC de la interfaz G0/0 del R2.</label><br><br>
+        <label><input type="radio" name="q14" value="e"> La dirección MAC del Servidor_de_archivos1.</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q14"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">15. ¿Dónde se mantienen las asignaciones de direcciones IPv4 a direcciones Ethernet de capa 2 en una computadora host?</p>
+    <form onsubmit="return checkAnswer(event, 'q15', ['a', 'e', 'f'], 'La caché ARP se usa para almacenar las direcciones IPv4 y las direcciones Ethernet físicas o MAC a las que se asignan las direcciones IPv4.<br>Las asignaciones incorrectas de direcciones IP a direcciones MAC pueden provocar la pérdida de la conectividad de extremo a extremo.')">
+        <label><input type="radio" name="q15" value="a"> Caché ARP</label><br><br>
+        <label><input type="radio" name="q15" value="b"> Tabla de vecinos</label><br><br>
+        <label><input type="radio" name="q15" value="c"> Tabla de direcciones MAC</label><br><br>
+        <label><input type="radio" name="q15" value="d"> Tabla de routing</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q15"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">16. ¿Qué información importante examina un dispositivo de capa 2 en el encabezado de la trama de Ethernet para continuar con el reenvío de los datos?</p>
+    <form onsubmit="return checkAnswer(event, 'q16', ['e'], 'El dispositivo de capa 2, como un switch, utiliza la dirección MAC de destino para determinar qué ruta (interfaz o puerto) se debe utilizar para enviar los datos hacia el dispositivo de destino.')">
+        <label><input type="radio" name="q16" value="a"> Tipo de Ethernet</label><br><br>
+        <label><input type="radio" name="q16" value="b"> Dirección IP de origen</label><br><br>
+        <label><input type="radio" name="q16" value="c"> Dirección MAC de origen</label><br><br>
+        <label><input type="radio" name="q16" value="d"> Dirección IP de destino</label><br><br>
+        <label><input type="radio" name="q16" value="e"> Dirección MAC de destino</label><br><br>
+        <button type="submit">Verificar</button>
+    </form>
+    <p class="result" id="result-q16"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">17. Una los comandos con las acciones correctas. (No se utilizan todas las opciones).</p>
+    <figure>
+        <img src="../images/foto_pregunta17.jpg" alt="Foto Pregunta 17">
+    </figure>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">18. Un administrador de red requiere acceso para administrar routersy switches de forma local y remota. Haga coincidir la descripción con el método de acceso. (No se utilizan todas las opciones).</p>
+    <figure>
+        <img src="../images/foto_pregunta18.jpg" alt="Foto Pregunta 18">
+    </figure>
+    <p><b>Explique: Tanto la consola como los puertos AUX se pueden utilizar para conectarse directamente a un dispositivo de red Cisco con fines de administración. Sin embargo, es más común usar el puerto de consola. El puerto AUX se utiliza con mayor frecuencia para el acceso remoto a través de una conexión de acceso telefónico.SSH y Telnet son métodos de acceso remoto que dependen de una conexión de red activa.SSH utiliza una autenticación de contraseña más fuerte que Telnet y también utiliza cifrado en los datos transmitidos.</b></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">19. ¿En qué método de reenvío de tramas se recibe la trama completa y se realiza una comprobación de CRC antes de reenviarla?</p>
+    <figure>
+        <img src="../images/foto_pregunta19.jpg" alt="Foto pregunta 19">
+    </figure>
+    <p><b>Explique: Existen tres fases de gran importancia en el proceso de arranque de un router Cisco:
+        <p style="margin-left: 25px;">
+            - Ejecución del POST y carga del programa de arranque<br>
+            - Localización y carga del software Cisco IOS<br>
+            - Localización y carga del archivo de configuración de inicio<br>
+        </p>
+        Si no se puede localizar un archivo de configuración de inicio, el router ingresa al modo de configuración y muestra la petición de entrada de dicho modo.</b></p>
+    <p class="result" id="result-q19"></p>
+</div>
+
+<div class="question">
+    <p class="titulo-pregunta">20. Una el comando con el modo de dispositivo en el que se introduce. No se utilizan todas las opciones.</p>
+    <figure>
+        <img src="../images/foto_pregunta20.jpg" alt="Foto pregunta 20">
+    </figure>
+    <p><b>Explique:
+        <p style="margin-left: 20px;">
+            El comando enable se introduce en el modo R1>.<br>
+            El comando login se introduce en el modo R1(config-line)#.<br>
+            El comando copy running-config startup-config se introduce en el modo R1#.<br>
+            El comando ip address 192.168.4.4 255.255.255.0 se introduce en el modo R1(config-if)#.<br>
+            El comando service password-encryption se introduce en el modo de configuración global.
+        </p>
+    </b></p>
+    <p class="result" id="result-q20"></p>
+</div>
+<div class="container_volver">
+    <a href="../index.html" class="link_volver">Volver al inicio</a>
+</div>
+</body>
+</html>
