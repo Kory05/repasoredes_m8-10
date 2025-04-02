@@ -100,7 +100,7 @@
 </div>
 <div class="question">
     <p class="titulo-pregunta">46. ¿Cómo aseguran los hosts que los paquetes se dirijan al destino de red correcto?</p>
-    <form onsubmit="return checkAnswer(event, 'q45', ['d'], 'Los hosts deben mantener su propia tabla de enrutamiento local para asegurar que los paquetes de la capa de red se dirijan a la red de destino correcta.<br>Por lo general, esta tabla local contiene una ruta hacia la interfaz loopback, una ruta hacia la red a la cual está conectado el host y una ruta predeterminada local, la cual representa la ruta que los paquetes deben seguir para llegar a todas las direcciones de red remotas.')">
+    <form onsubmit="return checkAnswer(event, 'q46', ['d'], 'Los hosts deben mantener su propia tabla de enrutamiento local para asegurar que los paquetes de la capa de red se dirijan a la red de destino correcta.<br>Por lo general, esta tabla local contiene una ruta hacia la interfaz loopback, una ruta hacia la red a la cual está conectado el host y una ruta predeterminada local, la cual representa la ruta que los paquetes deben seguir para llegar a todas las direcciones de red remotas.')">
         <label><input type="radio" name="q46" value="a"> Envían un paquete de consulta al gateway predeterminado en el que preguntan por la ruta más adecuada.</label><br><br>
         <label><input type="radio" name="q46" value="b"> Buscan una ruta hacia la dirección de destino de red en su propia tabla de enrutamiento local y transmiten esta información al gateway predeterminado.</label><br><br>
         <label><input type="radio" name="q46" value="c"> Siempre dirigen los paquetes al gateway predeterminado, que es responsable de la entrega de los paquetes.</label><br><br>
@@ -121,7 +121,7 @@
 </div>
 
 <div class="question">
-    <p class="titulo-pregunta">48. Cuando se transportan datos de aplicaciones en tiempo real, como streaming audio y video, ¿qué campo en el encabezado de IPv6 se puede utilizar para informar a los routers y los switches que deben mantener la misma ruta para los paquetes en la misma conversación?</p>
+    <p class="titulo-pregunta">48. Un técnico de red emite el comando <b>arp -d *</b> en una PC después de volver a configurar el router que está conectado a la LAN. ¿Cuál es el resultado después de emitir este comando?</p>
     <form onsubmit="return checkAnswer(event, 'q48', ['d'], 'Al emitir el comando <b>arp –d *</b> en una PC, se borra el contenido de la caché ARP.<br>Esto resulta útil cuando un técnico de redes quiere asegurarse de que la caché contenga información actualizada.')">
         <label><input type="radio" name="q48" value="a"> Se muestra el contenido actual de la caché ARP.</label><br><br>
         <label><input type="radio" name="q48" value="b"> Se sincroniza la caché ARP con la interfaz de router.</label><br><br>
