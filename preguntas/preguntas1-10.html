@@ -50,10 +50,10 @@
 <div class="question">
     <p class="titulo-pregunta">2. ¿Cuál de estas afirmaciones describe una característica del Protocolo IP?</p>
     <form onsubmit="return checkAnswer(event, 'q2', ['d'], 'El protocolo IP es un protocolo sin conexión, considerado poco fiable en términos de entrega extremo a extremo.<br>No proporciona control de errores en los casos en que los paquetes de recepción están fuera de orden o en los casos de paquetes faltantes.<br>Se basa en servicios de capa superior, como TCP, para resolver estos problemas.')">
-        <label><input type="radio" name="q2" value="a"> El uso de alambre trenzado para proteger los pares de cables adyacentes.</label><br><br>
-        <label><input type="radio" name="q2" value="b"> El campo magnético alrededor de los pares adyacentes de alambre.</label><br><br>
-        <label><input type="radio" name="q2" value="c"> La colisión causada por dos nodos que intentan usar los medios simultáneamente.</label><br><br>
-        <label><input type="radio" name="q2" value="d"> El reflejo de la onda eléctrica de vuelta desde el extremo lejano del cable.</label><br><br>
+        <label><input type="radio" name="q2" value="a"> La encapsulación IP se modifica en función de los medios de red.</label><br><br>
+        <label><input type="radio" name="q2" value="b"> IP utiliza protocolos de capa 2 para el control de errores de transmisión.</label><br><br>
+        <label><input type="radio" name="q2" value="c"> Las direcciones MAC se utilizan durante la encapsulación de paquetes IP.</label><br><br>
+        <label><input type="radio" name="q2" value="d"> IP utiliza los servicios de capa superior para manejar situaciones de paquetes faltantes o fuera de orden.</label><br><br>
         <button type="submit">Verificar</button>
     </form>
     <p class="result" id="result-q2"></p>
@@ -167,7 +167,7 @@
 </div>
 
 <div class="question">
-    <p class="titulo-pregunta">9. ¿Qué contiene el tráiler de una trama de enlace de datos?</p>
+    <p class="titulo-pregunta">9. ¿Qué información proporciona la prueba de loopback?</p>
     <form onsubmit="return checkAnswer(event, 'q9', ['e'], 'Dado que la prueba de loopback envía paquetes de vuelta al dispositivo host, no proporciona información sobre la conectividad de red a otros hosts.<br>La prueba de loopback verifica que la NIC del host, los controladores y el stack de TCP/IP funcionen.')">
         <label><input type="radio" name="q9" value="a"> El cable Ethernet funciona correctamente.</label><br><br>
         <label><input type="radio" name="q9" value="b"> DHCP funciona correctamente.</label><br><br>
